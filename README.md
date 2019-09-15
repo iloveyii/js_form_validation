@@ -15,3 +15,5 @@ This is a small test to write Js code for form validation.
    * You many need to install the following.
      1. node >= 10.16.0
      2. npm >= 6.9.0
+
+### [DEMO](http://js_form_validation.softhem.se/)

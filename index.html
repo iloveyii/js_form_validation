@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="CSS button">
+    <meta name="author" content="ali sw">
+    <link rel="shortcut icon" href="images/logo.png">
+
+    <title>Admin - Button</title>
+
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<form>
+    <input type="radio" id="type_person" name="type" value="person" checked/>
+    <input type="radio" id="type_company" name="type" value="company"/>
+    <input type="text" id="first_name" name="first_name" value="John"/>
+    <input type="text" id="last_name" name="last_name" value="Doe"/>
+    <input type="text" id="email" name="email" value="john@example.com"/>
+    <input type="text" id="company_name" name="company_name" value=""/>
+    <input type="text" id="phone" name="phone" value="234-567-890"/>
+
+    <button id="button">Check</button>
+</form>
+
+<script>
+    document.getElementById('button').addEventListener('click', (e) => {
+        e.preventDefault();
+
+
+
+        const type_person = document.getElementById('type_person');
+        if(type_person.checked) {
+            const first_name = document.getElementById('first_name').value;
+            const last_name = document.getElementById('last_name').value;
+            const email = document.getElementById('email').value;
+            let valid = true;
+
+            if(first_name.length == 0 ) {
+                valid = valid && false;
+            }
+            if(last_name.length == 0) {
+                valid = valid && false;
+            }
+
+            if( ! email.includes('@')) {
+                valid = valid && false;
+            } else {
+                const parts = email.split('@');
+                if(parts[0].length < 1 || parts[0].length > 64) {
+                    valid = valid && false;
+                } else {
+                    const regex = /^[0-9.a-zA-Z]+$/;
+                    if(regex.test(parts[0])) {
+                    } else {
+                        valid = valid && false;
+                    }
+                }
+                if(parts[1].length < 1 || parts[1].length > 64) {
+                    valid = valid && false;
+                } else {
+                    const regex = /^[0-9.a-zA-Z]+$/;
+                    if(regex.test(parts[1])) {
+                    } else {
+                        valid = valid && false;
+                    }
+                }
+            }
+
+            console.log(valid);
+            return valid;
+        } else {
+            let valid = true;
+
+            const company_name = document.getElementById('company_name').value;
+            const phone = document.getElementById('phone').value;
+
+            if(company_name.length == 0 ) {
+                valid = valid && false;
+            }
+
+            if(phone.length == 0 ) {
+                valid = valid && false;
+            }
+
+            const regex = /^[0-9\s-]+$/;
+            if(regex.test(phone)) {
+            } else {
+                valid = valid && false;
+            }
+
+            const phoneLength =  phone.replace(/-|\s/g,"");
+            if(phoneLength.length < 6) {
+                valid = valid && false;
+            }
+
+            console.log(valid);
+            return valid;
+        }
+
+
+
+
+    });
+
+
+</script>
+
+
+</body>
+</html>
